@@ -1,3 +1,5 @@
+from time import sleep
+
 from DyCommon.DyCommon import *
 from EventEngine.DyEvent import *
 from ..DyStockDataCommon import *
@@ -55,7 +57,18 @@ class DyStockDataDaysEngine(object):
 
         data = {}
         for code in codes:
-            temp = self._mongoDbEngine.getNotExistingDates(code, tradeDays, indicators)
+            lastEx = None
+            for _ in range(3):
+                try:
+                    temp = self._mongoDbEngine.getNotExistingDates(code, tradeDays, indicators)
+                    break
+                except Exception as ex:
+                    sleep(1)
+                    lastEx = ex
+                    self._info.print("self._mongoDbEngine.getNotExistingDates异常: {}".format(ex), DyLogData.warning)
+            else:
+                self._info.print("self._mongoDbEngine.getNotExistingDates异常: {}".format(lastEx), DyLogData.error)
+                return None
 
             if temp:
                 data[code] = temp
