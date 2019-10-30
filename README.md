@@ -105,6 +105,9 @@ DevilYuan股票量化系统由python编写，支持python3.4及以上版本，�
     pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
     ```
     - **A**: 请到Windows开始菜单里，找到对应的Anaconda Prompt。然后在Anaconda Prompt里，运行pip
+- Mac OS下出现MongoDB重连异常
+    - **Q**: Mac OS下出现MongoDB重连异常(pymongo.errors.AutoReconnect)
+    - **A**: 采用docker运行MongoDB
 
 # 运行
 因为程序需要读写文件，请到DevilYuan目录夹下以管理者权限运行`python DyMainWindow.py`
