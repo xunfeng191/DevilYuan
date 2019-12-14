@@ -108,6 +108,11 @@ DevilYuan股票量化系统由python编写，支持python3.4及以上版本，�
 - Mac OS下出现MongoDB重连异常
     - **Q**: Mac OS下出现MongoDB重连异常(pymongo.errors.AutoReconnect)
     - **A**: 采用docker运行MongoDB
+- import error
+    - **Q**: ImportError: cannot import name 'StringIO' from 'pandas.compat'
+    - **A**: 这个是由于新版本的pandas导致，对pandas做降级处理
+        - pip uninstall pandas
+        - pip install pandas==0.24.1
 
 # 运行
 因为程序需要读写文件，请到DevilYuan目录夹下以管理者权限运行`python DyMainWindow.py`
