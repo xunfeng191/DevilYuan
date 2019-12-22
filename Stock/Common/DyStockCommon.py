@@ -117,7 +117,7 @@ class DyStockCommon(object):
             @code: DY stock code
         """
         if code[-3:] == '.SH':
-            if code[:3] in ['600', '601', '603']:
+            if code[:3] in ['600', '601', '603', '688']:
                 return True
             
             if code[0] == '5':
