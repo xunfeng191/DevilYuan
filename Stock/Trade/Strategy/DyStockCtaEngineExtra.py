@@ -51,7 +51,7 @@ class DyStockCtaEngineExtra(object):
 
             if ratioMode == strategyCls.cFixedCash: # 固定现金
                 cash = ratio
-                if cash < curCash:
+                if cash > curCash:
                     return None
             else:
                 # 计算可用资金
