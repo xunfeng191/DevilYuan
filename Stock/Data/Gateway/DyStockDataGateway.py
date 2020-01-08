@@ -102,7 +102,7 @@ class DyStockDataGateway(object):
         retry = 3
         for _ in range(retry):
             try:
-                df = self._tuSharePro.trade_cal(exchange='', start_date=proStartDate, end_date=proEndDate)
+                df = self._tuSharePro.trade_cal(exchange='SSE', start_date=proStartDate, end_date=proEndDate)
 
                 df = df.set_index('cal_date')
                 df = df[proStartDate:proEndDate]

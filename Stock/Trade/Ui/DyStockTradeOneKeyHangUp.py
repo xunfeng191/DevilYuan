@@ -98,7 +98,7 @@ class DyStockTradeOneKeyHangUp(object):
 
         proStartDate = startDate.replace('-', '')
         try:
-            df = pro.trade_cal(exchange='', start_date=proStartDate)
+            df = pro.trade_cal(exchange='SSE', start_date=proStartDate)
 
             df = df.set_index('cal_date')
             df = df[proStartDate:]
