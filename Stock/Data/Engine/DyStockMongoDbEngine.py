@@ -99,7 +99,7 @@ class DyStockMongoDbEngine(object):
         try:
             cursor = collection.find(flt)
         except Exception as ex:
-            self._info.print("MongoDB Exception({0}): find ticks for {1} at {2}".format(str(ex) + ', ' + str(ex.details), code, date),
+            self._info.print("MongoDB Exception({}): find ticks for {} at [{} ~ {}]".format(str(ex) + ', ' + str(ex.details), code, startDate, endDate),
                              DyLogData.error)
             return None
 
