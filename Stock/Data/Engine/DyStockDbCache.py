@@ -90,7 +90,7 @@ class DyStockDbCache(object):
                 else:
                     return self.getTradeDays(dates[0], dates[1])
 
-            else: # [-n, base date, +n]
+            else: # [-n, base date, +n/end date]
                 midIndex = self.tradeDaysIndexes.get(dates[1])
                 if midIndex is None:
                     return None
@@ -98,7 +98,10 @@ class DyStockDbCache(object):
                 startIndex = midIndex + dates[0]
                 startIndex = max(0, startIndex)
 
-                endIndex = midIndex + dates[-1]
+                if isinstance(dates[-1], str):
+                    endIndex = self.tradeDaysIndexes.get(dates[-1])
+                else:
+                    endIndex = midIndex + dates[-1]
 
             return self.tradeDays[startIndex:endIndex+1]
 
