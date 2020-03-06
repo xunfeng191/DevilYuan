@@ -59,6 +59,7 @@ class DyStockDataEngine(object):
 
     def _stockOneKeyUpdateHandler(self, event):
         if self._oneKeyUpdateState is None:
+            self._updateTicks = event.data["ticks"]
 
             # 自动更新日线数据
             event = DyEvent(DyEventType.updateStockHistDays)
@@ -90,7 +91,7 @@ class DyStockDataEngine(object):
                 self._oneKeyUpdateState = None
 
             else:
-                if self._updateDates is not None:
+                if self._updateDates is not None and self._updateTicks:
                     event = DyEvent(DyEventType.updateStockHistTicks)
                     event.data = self._updateDates
 

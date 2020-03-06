@@ -49,5 +49,6 @@ class DyStockDataCommon:
     adjFactor = 'adjfactor'
 
     logDetailsEnabled = False
+    enableOneKeyUpdateWithTicks = True
 
     defaultHistTicksDataSource = '智能' # '新浪', '腾讯' , '网易', '智能'

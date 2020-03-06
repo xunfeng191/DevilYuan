@@ -213,7 +213,10 @@ class DyStockDataMainWindow(DyBasicMainWindow):
             # change UI
             self._startRunningMutexAction(self._oneKeyUpdateAction, 2)
 
-            self._mainEngine.eventEngine.put(DyEvent(DyEventType.stockOneKeyUpdate))
+            event = DyEvent(DyEventType.stockOneKeyUpdate)
+            event.data["ticks"] = DyStockDataCommon.enableOneKeyUpdateWithTicks
+
+            self._mainEngine.eventEngine.put(event)
 
     def _timeOneKeyUpdateAct(self):
         if self._timeOneKeyUpdateAction.text() == '停止定时一键更新':
@@ -299,6 +302,11 @@ class DyStockDataMainWindow(DyBasicMainWindow):
         self._enableLogDetailsAction = QAction('打开日志细节', self)
         self._enableLogDetailsAction.triggered.connect(self._enableLogDetailsAct)
         self._enableLogDetailsAction.setCheckable(True)
+
+        self._enableOneKeyUpdateWithTicksAction = QAction('一键更新: 更新历史分笔数据', self)
+        self._enableOneKeyUpdateWithTicksAction.triggered.connect(self._enableOneKeyUpdateWithTicksAct)
+        self._enableOneKeyUpdateWithTicksAction.setCheckable(True)
+        self._enableOneKeyUpdateWithTicksAction.setChecked(DyStockDataCommon.enableOneKeyUpdateWithTicks)
         
         # 测试
         testAction = QAction('测试', self)
@@ -327,6 +335,7 @@ class DyStockDataMainWindow(DyBasicMainWindow):
         # 添加菜单
         settingMenu = menuBar.addMenu('设置')
         settingMenu.addAction(self._enableLogDetailsAction)
+        settingMenu.addAction(self._enableOneKeyUpdateWithTicksAction)
 
         # 添加菜单
         #testMenu = menuBar.addMenu('测试')
@@ -380,6 +389,9 @@ class DyStockDataMainWindow(DyBasicMainWindow):
 
     def _enableLogDetailsAct(self):
         DyStockDataCommon.logDetailsEnabled = self._enableLogDetailsAction.isChecked()
+
+    def _enableOneKeyUpdateWithTicksAct(self):
+        DyStockDataCommon.enableOneKeyUpdateWithTicks = self._enableOneKeyUpdateWithTicksAction.isChecked()
 
     def _histTicksDataSourceMenuAct(self):
         self._histTicksDataSourceMenu.popup(QCursor.pos())
