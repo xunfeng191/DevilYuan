@@ -683,6 +683,10 @@ class DyStockDataGateway(object):
         df = pd.concat([dailyDf, dailyBasicDf], axis=1)
         df = df[df['vol'] > 0] # 剔除停牌
         df = df.merge(adjFactorDf, how='left', left_index=True, right_index=True) # 以行情为基准
+        #补全缺失的换手，复权因子数据-唐凯军
+        df["turnover_rate"]=df["turnover_rate"].fillna(value=0)
+        df["adj_factor"]=df["adj_factor"].fillna(method='bfill')
+
         if df.isnull().sum().sum() > 0:
             print("{}({})TuSharePro有些数据缺失[{}, {}]".format(code, name, startDate, endDate))
             print(df[df.isnull().any(axis=1)])

@@ -47,8 +47,9 @@ class DyStockDataCommon:
     # Wind的volume是成交量，单位是股数。数据库里的成交量也是股数。
     dayIndicators = ['open', 'high', 'low', 'close', 'volume', 'amt', 'turn', 'adjfactor']
     adjFactor = 'adjfactor'
-
-    logDetailsEnabled = False
-    enableOneKeyUpdateWithTicks = True
+    #是否显示详细log
+    logDetailsEnabled = True
+    #是否一键更新分笔数据
+    enableOneKeyUpdateWithTicks = False
 
     defaultHistTicksDataSource = '智能' # '新浪', '腾讯' , '网易', '智能'

@@ -32,7 +32,7 @@ class DyStockDataMainWindow(DyBasicMainWindow):
         self._initOthers()
 
     def _initOthers(self):
-        DyStockDataCommon.logDetailsEnabled = False
+        DyStockDataCommon.logDetailsEnabled = True
 
         self._scheduler = DyScheduler()
         self._scheduler.addJob(self._timeOneKeyUpdateJob, {1, 2, 3, 4, 5, 6, 7}, '18:31:00')

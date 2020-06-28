@@ -52,6 +52,7 @@ class DyStockDataHistDaysManualUpdateDlg(QDialog):
 
         self._forcedCheckBox = QCheckBox('强制')
         self._indexCheckBox = QCheckBox('指数') # 更新指数的日线数据
+        self._indexCheckBox.setChecked(True)
 
         self._indicatorGroupBox = self._createIndicatorGroupBox()
 
